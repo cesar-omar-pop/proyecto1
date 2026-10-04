@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#2196f3">
+  <title>Ejercicio 4 - Estrategia Offline</title>
+
+  <link rel="manifest" href="./manifest.json">
+  <link rel="stylesheet" href="./css/styles.css">
+</head>
+<body>
+
+  <header class="app-header">
+    <h1>Mi PWA App</h1>
+  </header>
+
+  <nav class="app-nav">
+    <a href="#inicio" class="active">Inicio</a>
+    <a href="#servicios">Servicios</a>
+    <a href="#contacto">Contacto</a>
+  </nav>
+
+  <main class="app-content">
+    <h2>Ejercicio 4: Estrategia Offline y Caché</h2>
+    <p id="status-connection">Estado: Comprobando conexión...</p>
+  </main>
+
+  <script>
+    // Detector visual de estado de conexión
+    function updateOnlineStatus() {
+      const statusEl = document.getElementById('status-connection');
+      if (navigator.onLine) {
+        statusEl.innerHTML = 'Estado: <strong style="color:green;">En línea (Online)</strong>';
+      } else {
+        statusEl.innerHTML = 'Estado: <strong style="color:red;">Sin conexión (Offline) — Servido desde Caché</strong>';
+      }
+    }
+
+    window.addEventListener('online', updateOnlineStatus);
+    window.addEventListener('offline', updateOnlineStatus);
+    updateOnlineStatus();
+
+    // Registro del SW
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.register('./sw.js')
+        .then(reg => console.log('SW Ejercicio 4 registrado:', reg))
+        .catch(err => console.warn('Error al registrar SW:', err));
+    }
+  </script>
+</body>
+</html>

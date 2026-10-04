@@ -1,0 +1,67 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  background-color: #f4f6f8;
+  color: #333;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+/* Header estilizado */
+.app-header {
+  background-color: #2196f3;
+  color: #ffffff;
+  padding: 16px;
+  text-align: center;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Menú de navegación */
+.app-nav {
+  display: flex;
+  justify-content: space-around;
+  background-color: #1976d2;
+}
+
+.app-nav a {
+  color: #ffffff;
+  text-decoration: none;
+  padding: 12px 16px;
+  display: block;
+  font-weight: 500;
+}
+
+.app-nav a.active {
+  background-color: #0d47a1;
+}
+
+/* Contenido Principal */
+.app-content {
+  flex: 1;
+  padding: 20px;
+  max-width: 800px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+/* Galería de Iconos */
+.icon-container {
+  display: flex;
+  gap: 20px;
+  margin-top: 20px;
+  justify-content: center;
+}
+
+.icon-card {
+  background: #ffffff;
+  padding: 15px;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  text-align: center;
+}

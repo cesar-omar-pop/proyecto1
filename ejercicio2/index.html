@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#2196f3">
+  <title>Ejercicio 2 - App Shell</title>
+
+  <!-- Web App Manifest y Estilos -->
+  <link rel="manifest" href="./manifest.json">
+  <link rel="stylesheet" href="./css/styles.css">
+</head>
+<body>
+
+  <!-- App Shell: Header fijo -->
+  <header class="app-header">
+    <h1>Mi PWA App</h1>
+  </header>
+
+  <!-- App Shell: Menú de Navegación -->
+  <nav class="app-nav">
+    <a href="#inicio" class="active">Inicio</a>
+    <a href="#servicios">Servicios</a>
+    <a href="#contacto">Contacto</a>
+  </nav>
+
+  <!-- Contenido principal interactivo -->
+  <main class="app-content">
+    <h2>Bienvenido al App Shell</h2>
+    <p>Esta es la estructura fija de la aplicación que carga de forma instantánea.</p>
+
+    <!-- Visualización de iconos dentro del App Shell -->
+    <div class="icon-container">
+      <div class="icon-card">
+        <p><strong>Icono 192x192:</strong></p>
+        <img src="./icons/icon-192x192.png" alt="Icono 192" width="100">
+      </div>
+      <div class="icon-card">
+        <p><strong>Icono 512x512:</strong></p>
+        <img src="./icons/icon-512x512.png" alt="Icono 512" width="100">
+      </div>
+    </div>
+  </main>
+
+</body>
+</html>

@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#2196f3">
+  <title>Ejercicio 5 - Notificaciones Push</title>
+
+  <link rel="manifest" href="./manifest.json">
+  <link rel="stylesheet" href="./css/styles.css">
+</head>
+<body>
+
+  <header class="app-header">
+    <h1>Mi PWA App</h1>
+  </header>
+
+  <nav class="app-nav">
+    <a href="#inicio" class="active">Inicio</a>
+    <a href="#servicios">Servicios</a>
+    <a href="#contacto">Contacto</a>
+  </nav>
+
+  <main class="app-content">
+    <h2>Ejercicio 5: Notificaciones y Sincronización</h2>
+    <p>Prueba de integración de API de Notificaciones Push Nativas.</p>
+
+    <div style="margin-top: 20px; text-align: center;">
+      <button id="btn-notificar" style="padding: 12px 24px; background: #2196f3; color: white; border: none; border-radius: 4px; font-size: 16px; cursor: pointer;">
+        Activar Notificaciones
+      </button>
+    </div>
+  </main>
+
+  <script>
+    // Registro del Service Worker
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.register('./sw.js')
+        .then(reg => console.log('SW Ejercicio 5 registrado:', reg))
+        .catch(err => console.warn('Error al registrar SW:', err));
+    }
+
+    // Lógica para solicitar permiso y lanzar notificación
+    const btnNotificar = document.getElementById('btn-notificar');
+
+    btnNotificar.addEventListener('click', () => {
+      if (!('Notification' in window)) {
+        alert('Este navegador no soporta notificaciones.');
+        return;
+      }
+
+      Notification.requestPermission().then(permission => {
+        if (permission === 'granted') {
+          navigator.serviceWorker.ready.then(reg => {
+            reg.showNotification('¡PWA Notificación!', {
+              body: 'Las notificaciones push locales están funcionando correctamente.',
+              icon: './icons/icon-192x192.png',
+              badge: './icons/icon-192x192.png'
+            });
+          });
+        } else {
+          alert('Permiso de notificaciones denegado.');
+        }
+      });
+    });
+  </script>
+</body>
+</html>

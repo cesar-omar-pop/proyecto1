@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#2196f3">
+  <title>Ejercicio 3 - Service Worker</title>
+
+  <link rel="manifest" href="./manifest.json">
+  <link rel="stylesheet" href="./css/styles.css">
+</head>
+<body>
+
+  <header class="app-header">
+    <h1>Mi PWA App</h1>
+  </header>
+
+  <nav class="app-nav">
+    <a href="#inicio" class="active">Inicio</a>
+    <a href="#servicios">Servicios</a>
+    <a href="#contacto">Contacto</a>
+  </nav>
+
+  <main class="app-content">
+    <h2>Ejercicio 3: Service Worker</h2>
+    <p>Abre la consola (F12) para verificar la instalación del Service Worker.</p>
+  </main>
+
+  <!-- Script de registro del Service Worker -->
+  <script>
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.register('./sw.js')
+        .then(reg => console.log('Registro de SW exitoso:', reg))
+        .catch(err => console.warn('Error al registrar SW:', err));
+    }
+  </script>
+</body>
+</html>
