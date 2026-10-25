@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#123c69">
+  <meta name="description" content="Inventario PWA: administra productos incluso sin conexión.">
+  <title>Inventario PWA</title>
+  <link rel="manifest" href="manifest.json">
+  <link rel="icon" href="icons/icon-192.png" type="image/png">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand"><div class="brand-mark">IP</div><div><h1>Inventario PWA</h1><p>Control de productos, incluso sin conexión</p></div></div>
+    <div class="status-wrap"><span id="connectionStatus" class="status">Comprobando conexión…</span><button id="installBtn" class="button button-light" hidden>Instalar app</button></div>
+  </header>
+
+  <main class="container">
+    <section class="summary-grid" aria-label="Resumen de inventario">
+      <article class="summary-card"><span>Productos registrados</span><strong id="totalProducts">0</strong></article>
+      <article class="summary-card"><span>Unidades en stock</span><strong id="totalStock">0</strong></article>
+      <article class="summary-card"><span>Productos con poco stock</span><strong id="lowStock">0</strong></article>
+    </section>
+
+    <section class="panel">
+      <div class="section-heading"><div><h2 id="formTitle">Agregar producto</h2><p>Los datos se guardan localmente en este dispositivo.</p></div></div>
+      <form id="productForm">
+        <input type="hidden" id="productId">
+        <div class="form-grid">
+          <label>Nombre del producto <input id="name" name="name" required maxlength="80" placeholder="Ej. Filtro de aceite"></label>
+          <label>Categoría <input id="category" name="category" maxlength="60" placeholder="Ej. Refacciones"></label>
+          <label>Precio (MXN) <input id="price" name="price" type="number" min="0" step="0.01" required placeholder="0.00"></label>
+          <label>Existencias <input id="stock" name="stock" type="number" min="0" step="1" required placeholder="0"></label>
+          <label class="wide">Descripción <textarea id="description" name="description" rows="2" maxlength="300" placeholder="Detalles del producto (opcional)"></textarea></label>
+          <label class="wide">Fotografía del producto (opcional)
+            <input id="photo" type="file" accept="image/*" capture="environment">
+            <small>En dispositivos compatibles, permite tomar una foto con la cámara.</small>
+          </label>
+        </div>
+        <div class="form-actions"><button class="button" type="submit" id="saveBtn">Guardar producto</button><button class="button button-secondary" type="button" id="cancelEdit" hidden>Cancelar edición</button><button class="button button-outline" type="button" id="locationBtn">Guardar mi ubicación</button><button class="button button-outline" type="button" id="notifyBtn">Activar notificaciones</button></div>
+        <p id="formMessage" class="message" role="status"></p>
+        <p id="locationText" class="muted"></p>
+      </form>
+    </section>
+
+    <section class="panel">
+      <div class="list-heading"><div><h2>Inventario</h2><p id="resultCount">0 productos</p></div><input id="search" class="search" type="search" placeholder="Buscar producto…" aria-label="Buscar producto"></div>
+      <div id="productList" class="product-list"></div>
+      <div id="emptyState" class="empty-state"><div class="empty-icon">▦</div><h3>Tu inventario está vacío</h3><p>Agrega tu primer producto usando el formulario.</p></div>
+    </section>
+    <p class="footnote">PWA demostrativa · Los datos permanecen en este navegador. Exporta una copia de seguridad con frecuencia.</p>
+  </main>
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+  <script src="app.js" defer></script>
+</body>
+</html>
